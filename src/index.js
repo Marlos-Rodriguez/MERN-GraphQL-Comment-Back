@@ -2,6 +2,7 @@ import "@babel/polyfill";
 
 import { ApolloServer } from "apollo-server";
 import mongoose from "mongoose";
+
 require("dotenv").config({ path: "variables.env" });
 
 import typeDefs from "./graphql/typeDefs";
@@ -29,10 +30,19 @@ const conectarDB = async () => {
 };
 
 const main = async () => {
-  await conectarDB();
-  server.listen({ port: process.env.PORT || 5000 }).then((res) => {
-    console.log(`Server running at ${res.url}`);
-  });
+  try {
+    await conectarDB();
+    server
+      .listen({ port: process.env.PORT || 5000 })
+      .then((res) => {
+        console.log(`Server running at ${res.url}`);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 main();

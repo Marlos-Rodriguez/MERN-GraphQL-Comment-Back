@@ -76,22 +76,32 @@ var main = /*#__PURE__*/function () {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
-            _context2.next = 2;
+            _context2.prev = 0;
+            _context2.next = 3;
             return conectarDB();
 
-          case 2:
+          case 3:
             server.listen({
               port: process.env.PORT || 5000
             }).then(function (res) {
               console.log("Server running at ".concat(res.url));
+            })["catch"](function (err) {
+              console.log(err);
             });
+            _context2.next = 9;
+            break;
 
-          case 3:
+          case 6:
+            _context2.prev = 6;
+            _context2.t0 = _context2["catch"](0);
+            console.log(_context2.t0);
+
+          case 9:
           case "end":
             return _context2.stop();
         }
       }
-    }, _callee2);
+    }, _callee2, null, [[0, 6]]);
   }));
 
   return function main() {
